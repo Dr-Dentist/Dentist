@@ -5,6 +5,10 @@
 <style>body{margin:0;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#fafafa;color:#06182e;font-family:Sora,Arial,sans-serif;text-align:center;padding:24px}
 h1{font-size:clamp(64px,12vw,140px);margin:0;letter-spacing:-3px}p{color:#5d6c7b;font-size:18px;margin:8px 0 28px}
 a{display:inline-flex;align-items:center;gap:8px;background:#06182e;color:#fff;text-decoration:none;padding:14px 26px;border-radius:999px;font-weight:500}</style>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="assets/css/toggles.css" rel="stylesheet" type="text/css"/>
+  <script>(function(){try{var K=["en","hi","ur"];var t=localStorage.getItem("dapdc_theme");if(t!=="light"&&t!=="dark"){t=(window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";}var d=document.documentElement;d.setAttribute("data-theme",t);var l=localStorage.getItem("dapdc_lang");if(K.indexOf(l)<0){var n=navigator.languages||[navigator.language||"en"];l="en";for(var i=0;i<n.length;i++){var x=String(n[i]||"").toLowerCase().split("-")[0];if(K.indexOf(x)>-1){l=x;break;}}}d.setAttribute("lang",l);d.setAttribute("dir",l==="ur"?"rtl":"ltr");}catch(e){}})();</script>
 </head><body><h1>404</h1><p>We couldn't find that page.</p><a href="index.html">Back to home</a>
 <script>
 /* Image guard: any failed/empty image -> on-brand gradient SVG so nothing ever looks broken. */
@@ -26,4 +30,6 @@ a{display:inline-flex;align-items:center;gap:8px;background:#06182e;color:#fff;t
   document.querySelectorAll('img').forEach(bind);
 })();
 </script>
+  <script src="assets/js/i18n-dict.js"></script>
+  <script src="assets/js/i18n-theme.js"></script>
 </body></html>

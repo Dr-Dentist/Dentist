@@ -1,0 +1,201 @@
+/* ==========================================================================
+   Dr. Asim Prakash Dental Clinic — language + theme toggles
+   Loaded AFTER lumora.css. Additive only; no template rules edited.
+   ========================================================================== */
+
+/* ---------- 1. Header toggle controls ---------------------------------- */
+.dapdc-toggles{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  margin-inline-end:14px;
+}
+.dapdc-toggle{
+  -webkit-appearance:none;appearance:none;
+  display:inline-flex;align-items:center;justify-content:center;
+  min-width:38px;height:38px;padding:0 10px;
+  font-family:inherit;font-size:13px;font-weight:600;line-height:1;
+  color:currentColor;
+  background:transparent;
+  border:1.5px solid currentColor;
+  border-radius:999px;
+  cursor:pointer;
+  opacity:.9;
+  transition:opacity .15s ease, background-color .15s ease;
+}
+.dapdc-toggle:hover{opacity:1;background-color:rgba(127,127,127,.18);}
+.dapdc-toggle:focus-visible{outline:2px solid currentColor;outline-offset:2px;opacity:1;}
+.dapdc-toggle svg{width:17px;height:17px;display:block;fill:currentColor;}
+.dapdc-lang-label{letter-spacing:.03em;white-space:nowrap;}
+
+/* sun / moon swap */
+.dapdc-toggle .dapdc-ico-moon{display:none;}
+:root[data-theme="dark"] .dapdc-toggle .dapdc-ico-sun{display:none;}
+:root[data-theme="dark"] .dapdc-toggle .dapdc-ico-moon{display:block;}
+
+@media (max-width:479px){
+  .dapdc-toggles{gap:6px;margin-inline-end:8px;}
+  .dapdc-toggle{min-width:34px;height:34px;padding:0 8px;font-size:12px;}
+}
+
+/* ---------- 2. Dark mode ---------------------------------------------- *
+ * The template paints backgrounds/text from --primitive-color--* vars
+ * (e.g. background-color:var(--primitive-color--neutral-0)). Re-point
+ * those primitives and the whole site re-colours.                       */
+:root[data-theme="dark"]{
+  color-scheme:dark;
+
+  /* ink scale -> light (used as text on every section) */
+  --primitive-color--neutral-0:#eef4f4;
+  --primitive-color--neutral-100:#eef4f4;
+  --primitive-color--primary-900:#eef4f4;
+  --primitive-color--primary-800:#e6efef;
+  --primitive-color--primary-700:#d6e2e1;
+  --primitive-color--primary-600:#37b7c6;   /* brand teal, brightened */
+  --primitive-color--primary-500:#3abecc;   /* brand teal, brightened */
+  --primitive-color--primary-400:#93b3b3;
+  --primitive-color--black:#eef4f4;
+
+  /* paper scale -> dark (backgrounds / hairlines) */
+  --primitive-color--neutral-50:#12201e;
+  --primitive-color--neutral-200:#16302c;
+  --primitive-color--neutral-300:#16302c;
+  --primitive-color--neutral-400:#31413f;
+  --primitive-color--gray-400:#16211f;
+
+  /* muted greys -> light-muted */
+  --primitive-color--gray-500:#a9b7b7;
+  --primitive-color--gray-600:#a2b1b1;
+  --primitive-color--gray-700:#9caaaa;
+  --primitive-color--gray-800:#98a7a7;
+
+  --dapdc-bg:#0e1a18;        /* page */
+  --dapdc-panel:#122421;     /* dark section */
+  --dapdc-card:#17302c;      /* raised card  */
+  --dapdc-line:rgba(255,255,255,.14);
+}
+
+:root[data-theme="dark"] body{background-color:var(--dapdc-bg);}
+
+/* sections that are dark or photo-backed in light mode -> flat dark panel */
+:root[data-theme="dark"] .section_hero,
+:root[data-theme="dark"] .section_story,
+:root[data-theme="dark"] .section_team,
+:root[data-theme="dark"] .section_testimonial,
+:root[data-theme="dark"] .testimonial_block,
+:root[data-theme="dark"] .section_cta,
+:root[data-theme="dark"] .section_footer,
+:root[data-theme="dark"] .our-info_wrap,
+:root[data-theme="dark"] .cta_component,
+:root[data-theme="dark"] .footer_component{
+  background-color:var(--dapdc-panel) !important;
+  background-image:none !important;
+}
+:root[data-theme="dark"] .section_hero *,
+:root[data-theme="dark"] .section_team *,
+:root[data-theme="dark"] .section_testimonial *,
+:root[data-theme="dark"] .section_cta *,
+:root[data-theme="dark"] .section_footer *,
+:root[data-theme="dark"] .our-info_wrap *{
+  border-color:var(--dapdc-line);
+}
+
+/* coloured / white cards -> raised dark card */
+:root[data-theme="dark"] .service_item,
+:root[data-theme="dark"] .team-item_content,
+:root[data-theme="dark"] .faq_cta,
+:root[data-theme="dark"] .value_item,
+:root[data-theme="dark"] .blog-item_icon-wrap,
+:root[data-theme="dark"] .story-slider_arrow-wrap,
+:root[data-theme="dark"] .awards-tabs_link,
+:root[data-theme="dark"] .our-story_item,
+:root[data-theme="dark"] .blog-item_wrap,
+:root[data-theme="dark"] .blog_item,
+:root[data-theme="dark"] .faq_item,
+:root[data-theme="dark"] .testimonial-slider_card{
+  background-color:var(--dapdc-card) !important;
+  background-image:none !important;
+}
+
+/* translucent-white chips inside service cards */
+:root[data-theme="dark"] .service-item_tag{
+  background-color:rgba(255,255,255,.10) !important;
+  color:#eef4f4 !important;
+}
+
+/* "why choose us" accordion uses a hard-coded near-black text colour */
+:root[data-theme="dark"] .tabs-accordion_item,
+:root[data-theme="dark"] .tabs-accordion_header,
+:root[data-theme="dark"] .tabs-accordion_header-title,
+:root[data-theme="dark"] .tabs-accordion_info-inner,
+:root[data-theme="dark"] .tabs-accordion_info-inner *{
+  color:#eef4f4 !important;
+}
+
+/* nav + menus */
+:root[data-theme="dark"] .navbar_link,
+:root[data-theme="dark"] .navbar_link div,
+:root[data-theme="dark"] .navbar-dropdown_link,
+:root[data-theme="dark"] .navbar-dropdown_link div,
+:root[data-theme="dark"] .navbar-dropdown_toggle,
+:root[data-theme="dark"] .navbar-dropdown_toggle div{color:#eef4f4 !important;}
+:root[data-theme="dark"] .navbar_menu,
+:root[data-theme="dark"] .navbar-dropdown_list,
+:root[data-theme="dark"] .navbar-dropdown_list.w--open{background-color:var(--dapdc-bg) !important;}
+:root[data-theme="dark"] .navbar_toggler-bar-bottom,
+:root[data-theme="dark"] .navbar-toggler_bar_top,
+:root[data-theme="dark"] .navbar-toggler_bar-middle{background-color:#eef4f4 !important;}
+
+/* form card + fields */
+:root[data-theme="dark"] .lead-form_card,
+:root[data-theme="dark"] [class*="form_card"]{
+  background-color:#12211f !important;color:#eef4f4;border-color:var(--dapdc-line);
+}
+:root[data-theme="dark"] input,
+:root[data-theme="dark"] textarea,
+:root[data-theme="dark"] select{
+  background-color:#0f1c1a !important;color:#eef4f4;border-color:var(--dapdc-line);
+}
+:root[data-theme="dark"] input::placeholder,
+:root[data-theme="dark"] textarea::placeholder{color:#8ba0a0;}
+
+/* primary buttons: dark pill + light label (avoids glaring white in dark mode) */
+:root[data-theme="dark"] .button_primary{
+  background-color:#1c2c29 !important;
+  border:1px solid var(--dapdc-line) !important;
+}
+:root[data-theme="dark"] .button_primary,
+:root[data-theme="dark"] .button_primary div,
+:root[data-theme="dark"] .button_primary path{color:#eef4f4 !important;stroke:#eef4f4 !important;}
+:root[data-theme="dark"] .button_primary:hover{background-color:#26918f !important;}
+
+/* keep real photos looking natural, just take the edge off */
+:root[data-theme="dark"] img:not([src*="logo"]){filter:brightness(.92);}
+
+/* ---------- 3. Language: fonts + direction --------------------------- */
+:root[lang="hi"] body,
+:root[lang="hi"] input,
+:root[lang="hi"] textarea,
+:root[lang="hi"] button{
+  font-family:"Noto Sans Devanagari","Sora",-apple-system,"Segoe UI",sans-serif;
+}
+:root[lang="ur"] body,
+:root[lang="ur"] input,
+:root[lang="ur"] textarea,
+:root[lang="ur"] button{
+  font-family:"Noto Nastaliq Urdu","Noto Naskh Arabic","Sora",serif;
+  line-height:2.1;
+}
+
+/* right-to-left for Urdu */
+:root[dir="rtl"] .dapdc-toggles{margin-inline-end:0;margin-inline-start:14px;}
+:root[dir="rtl"] .button-icon_group,
+:root[dir="rtl"] .dropdown_chevron{transform:scaleX(-1);}
+:root[dir="rtl"] .navbar_menu,
+:root[dir="rtl"] .footer_link-list,
+:root[dir="rtl"] .our-info_list{text-align:right;}
+
+/* the hero headline uses a per-character split animation that only makes
+   sense for Latin text — show it plainly in Hindi / Urdu               */
+:root[lang="hi"] .hero-text-split,
+:root[lang="ur"] .hero-text-split{opacity:1 !important;transform:none !important;}
