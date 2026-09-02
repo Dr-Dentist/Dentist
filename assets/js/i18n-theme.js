@@ -1,13 +1,12 @@
 /* Dr. Asim Prakash Dental Clinic
- * Header toggles: language (English / Hindi / Urdu) + light/dark theme.
+ * Header toggles: language (English / Hindi) + light/dark theme.
  * Progressive enhancement — injects its own controls, no template markup edited.
  * Depends on window.DAPDC_I18N (assets/js/i18n-dict.js), loaded first.       */
 (function () {
   "use strict";
 
-  var LANGS = ["en", "hi", "ur"];
-  var LABEL = { en: "EN", hi: "हिं", ur: "اردو" };
-  var RTL = { ur: true };
+  var LANGS = ["en", "hi"];
+  var LABEL = { en: "EN", hi: "हिं" };
   var LS_LANG = "dapdc_lang", LS_THEME = "dapdc_theme";
   var DICT = window.DAPDC_I18N || {};
   var root = document.documentElement;
@@ -85,7 +84,7 @@
   function applyLang(l) {
     lang = l;
     root.setAttribute("lang", l);
-    root.setAttribute("dir", RTL[l] ? "rtl" : "ltr");
+    root.setAttribute("dir", "ltr");
 
     textTargets.forEach(function (t) {
       if (!t.node || !t.node.parentNode) return;         // node was replaced (e.g. hero split)

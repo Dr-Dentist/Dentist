@@ -172,30 +172,14 @@
 /* keep real photos looking natural, just take the edge off */
 :root[data-theme="dark"] img:not([src*="logo"]){filter:brightness(.92);}
 
-/* ---------- 3. Language: fonts + direction --------------------------- */
+/* ---------- 3. Language: Hindi font --------------------------------- */
 :root[lang="hi"] body,
 :root[lang="hi"] input,
 :root[lang="hi"] textarea,
 :root[lang="hi"] button{
   font-family:"Noto Sans Devanagari","Sora",-apple-system,"Segoe UI",sans-serif;
 }
-:root[lang="ur"] body,
-:root[lang="ur"] input,
-:root[lang="ur"] textarea,
-:root[lang="ur"] button{
-  font-family:"Noto Nastaliq Urdu","Noto Naskh Arabic","Sora",serif;
-  line-height:2.1;
-}
-
-/* right-to-left for Urdu */
-:root[dir="rtl"] .dapdc-toggles{margin-inline-end:0;margin-inline-start:14px;}
-:root[dir="rtl"] .button-icon_group,
-:root[dir="rtl"] .dropdown_chevron{transform:scaleX(-1);}
-:root[dir="rtl"] .navbar_menu,
-:root[dir="rtl"] .footer_link-list,
-:root[dir="rtl"] .our-info_list{text-align:right;}
 
 /* the hero headline uses a per-character split animation that only makes
-   sense for Latin text — show it plainly in Hindi / Urdu               */
-:root[lang="hi"] .hero-text-split,
-:root[lang="ur"] .hero-text-split{opacity:1 !important;transform:none !important;}
+   sense for Latin text — show it plainly in Hindi                      */
+:root[lang="hi"] .hero-text-split{opacity:1 !important;transform:none !important;}
