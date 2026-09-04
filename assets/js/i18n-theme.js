@@ -225,9 +225,22 @@
       setTimeout(sync, 0); setTimeout(sync, 50); setTimeout(sync, 160);
     });
     new MutationObserver(sync).observe(btn, { attributes: true, attributeFilter: ["class"] });
+
+    // Webflow's nav script preventDefaults link taps inside an open menu, then
+    // fails to navigate (its close animation is broken in this export). Take over:
+    // capture-phase, so we run before Webflow and can navigate ourselves.
     menu.addEventListener("click", function (e) {
-      if (e.target.closest("a") && btn.classList.contains("w--open")) btn.click();
-    });
+      var a = e.target.closest("a");
+      if (!a) return;
+      var href = a.getAttribute("href");
+      if (!href || href.charAt(0) === "#" || /^javascript:/i.test(href)) return;
+      e.stopImmediatePropagation();
+      e.preventDefault();
+      if (btn.classList.contains("w--open")) close();
+      if (a.target === "_blank") window.open(href, "_blank", "noopener");
+      else window.location.href = a.href;
+    }, true);
+
     if (overlay) overlay.addEventListener("click", function () {
       if (btn.classList.contains("w--open")) btn.click();
     });
