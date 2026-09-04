@@ -248,3 +248,47 @@ a.footer_brand img,
 @media (max-width:479px){
   .navbar_logo .logo_image, a.navbar_logo img{ width:88px !important; }
 }
+
+/* ---------- 7. Liquid-glass header + mobile menu ------------------- *
+ * The header is a dark element on every page, so the glass is navy-tinted
+ * in both themes (frosts the hero behind it; frosts light content when
+ * scrolled). Menu text stays white to match.                            */
+.navbar_wrap{
+  position:-webkit-sticky; position:sticky; top:0;
+  background-color:transparent !important;
+  background-image:linear-gradient(180deg, rgba(8,16,46,.78), rgba(8,16,46,.60)) !important;
+  -webkit-backdrop-filter:blur(20px) saturate(155%);
+  backdrop-filter:blur(20px) saturate(155%);
+  border-bottom:1px solid rgba(255,255,255,.16) !important;
+  box-shadow:0 10px 30px -16px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.14);
+}
+
+@media (max-width:991px){
+  /* full-screen scrim: blur + dim the whole page behind the menu */
+  .dapdc-nav-open .w-nav-overlay{
+    background:rgba(5,9,22,.72) !important;
+    -webkit-backdrop-filter:blur(14px) saturate(140%);
+    backdrop-filter:blur(14px) saturate(140%);
+  }
+  /* the menu sheet: frosted navy glass, opaque enough to sit over a headline */
+  .dapdc-nav-open .navbar_menu.w-nav-menu{
+    background:linear-gradient(180deg, rgba(16,26,64,.92), rgba(10,17,46,.94)) !important;
+    -webkit-backdrop-filter:blur(30px) saturate(190%);
+    backdrop-filter:blur(30px) saturate(190%);
+    border-bottom:1px solid rgba(255,255,255,.18) !important;
+    box-shadow:0 30px 70px -20px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,255,255,.22);
+    padding:18px 22px 30px !important;
+  }
+  .dapdc-nav-open .navbar_link,
+  .dapdc-nav-open .navbar-dropdown_toggle{ padding:13px 0 !important; }
+  .dapdc-nav-open .navbar_link div,
+  .dapdc-nav-open .navbar-dropdown_toggle div{ color:#eef2fb !important; font-weight:600; }
+  .dapdc-nav-open .navbar_link + .navbar_link{ border-top:1px solid rgba(255,255,255,.09); }
+}
+
+/* browsers without backdrop-filter: fall back to solid navy */
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+  .navbar_wrap{ background-image:none !important; background-color:rgba(9,20,54,.94) !important; }
+  .dapdc-nav-open .w-nav-overlay{ background:rgba(6,10,26,.6) !important; }
+  .dapdc-nav-open .navbar_menu.w-nav-menu{ background:#0a1030 !important; }
+}
