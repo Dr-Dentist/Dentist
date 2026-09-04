@@ -15,18 +15,18 @@
   display:inline-flex;align-items:center;justify-content:center;
   min-width:38px;height:38px;padding:0 10px;
   font-family:inherit;font-size:13px;font-weight:600;line-height:1;
-  color:currentColor;
+  color:#ffffff;                       /* header sits on the dark navy bar in both themes */
   background:transparent;
-  border:1.5px solid currentColor;
+  border:1.5px solid rgba(255,255,255,.65);
   border-radius:999px;
   cursor:pointer;
-  opacity:.9;
-  transition:opacity .15s ease, background-color .15s ease;
+  opacity:1;
+  transition:background-color .15s ease, border-color .15s ease;
 }
-.dapdc-toggle:hover{opacity:1;background-color:rgba(127,127,127,.18);}
-.dapdc-toggle:focus-visible{outline:2px solid currentColor;outline-offset:2px;opacity:1;}
-.dapdc-toggle svg{width:17px;height:17px;display:block;fill:currentColor;}
-.dapdc-lang-label{letter-spacing:.03em;white-space:nowrap;}
+.dapdc-toggle:hover{background-color:rgba(255,255,255,.16);border-color:#fff;}
+.dapdc-toggle:focus-visible{outline:2px solid #fff;outline-offset:2px;}
+.dapdc-toggle svg{width:17px;height:17px;display:block;fill:#ffffff;}
+.dapdc-lang-label{letter-spacing:.03em;white-space:nowrap;color:#fff;}
 
 /* sun / moon swap */
 .dapdc-toggle .dapdc-ico-moon{display:none;}
