@@ -238,3 +238,13 @@ img,svg,video,iframe{max-width:100%;}
   .dapdc-wa svg{ width:28px; height:28px; }
 }
 @media (prefers-reduced-motion:reduce){ .dapdc-wa{ animation:none; } }
+
+/* ---------- 6. Logo sizing (30% smaller than template default) ------ */
+.navbar_logo .logo_image,
+a.navbar_logo img{ width:98px !important; height:auto !important; }
+.footer_brand .brand_logo,
+a.footer_brand img,
+.brand_logo{ width:98px !important; height:auto !important; }
+@media (max-width:479px){
+  .navbar_logo .logo_image, a.navbar_logo img{ width:88px !important; }
+}
