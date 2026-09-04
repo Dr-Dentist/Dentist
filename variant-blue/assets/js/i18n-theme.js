@@ -187,19 +187,49 @@
  * when a link inside it is tapped.                                          */
 (function () {
   "use strict";
+  var FORCED = ["transform", "transition", "position", "top", "left", "right",
+                "width", "z-index", "max-height", "overflow-y"];
   function init() {
     var btn = document.querySelector(".w-nav-button");
     var menu = document.querySelector(".navbar_menu.w-nav-menu");
+    var overlay = document.querySelector(".w-nav-overlay");
+    var bar = document.querySelector(".navbar_container") || document.querySelector(".navbar_wrap");
     if (!btn || !menu) return;
     var root = document.documentElement;
-    var sync = function () {
-      root.classList.toggle("dapdc-nav-open", btn.classList.contains("w--open"));
-    };
-    btn.addEventListener("click", function () { setTimeout(sync, 0); setTimeout(sync, 60); });
+
+    function navH() {
+      return bar ? Math.round(bar.getBoundingClientRect().bottom) : 64;
+    }
+    function open() {
+      root.classList.add("dapdc-nav-open");
+      var h = navH();
+      menu.style.setProperty("transform", "none", "important");
+      menu.style.setProperty("transition", "none", "important");
+      menu.style.setProperty("position", "fixed", "important");
+      menu.style.setProperty("top", h + "px", "important");
+      menu.style.setProperty("left", "0", "important");
+      menu.style.setProperty("right", "0", "important");
+      menu.style.setProperty("width", "100%", "important");
+      menu.style.setProperty("z-index", "2147482000", "important");
+      menu.style.setProperty("max-height", "calc(100vh - " + h + "px)", "important");
+      menu.style.setProperty("overflow-y", "auto", "important");
+      if (overlay) overlay.style.setProperty("z-index", "2147481000", "important");
+    }
+    function close() {
+      root.classList.remove("dapdc-nav-open");
+      FORCED.forEach(function (p) { menu.style.removeProperty(p); });
+    }
+    function sync() { btn.classList.contains("w--open") ? open() : close(); }
+
+    btn.addEventListener("click", function () {
+      setTimeout(sync, 0); setTimeout(sync, 50); setTimeout(sync, 160);
+    });
     new MutationObserver(sync).observe(btn, { attributes: true, attributeFilter: ["class"] });
     menu.addEventListener("click", function (e) {
-      var a = e.target.closest("a");
-      if (a && btn.classList.contains("w--open")) { btn.click(); }
+      if (e.target.closest("a") && btn.classList.contains("w--open")) btn.click();
+    });
+    if (overlay) overlay.addEventListener("click", function () {
+      if (btn.classList.contains("w--open")) btn.click();
     });
     sync();
   }
