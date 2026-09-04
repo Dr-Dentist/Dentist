@@ -6,19 +6,23 @@
   <meta name="description" content="Patient login for Dr. Asim Prakash Dental Clinic, Araria. Sign in to view your appointments, treatment plan and reports."/>
   <meta name="robots" content="noindex, follow"/>
   <meta content="width=device-width, initial-scale=1" name="viewport"/>
-  <link href="assets/css/lumora.css?v=20260614f" rel="stylesheet" type="text/css"/>
+  <link href="assets/css/lumora.css?v=20260904a" rel="stylesheet" type="text/css"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet"/>
-  <link href="assets/css/toggles.css" rel="stylesheet" type="text/css"/>
-  <link href="assets/img/favicon.svg" rel="icon" type="image/svg+xml"/>
-  <link href="assets/img/favicon.svg" rel="apple-touch-icon"/>
+  <link href="assets/css/toggles.css?v=20260904a" rel="stylesheet" type="text/css"/>
+  <link href="assets/img/favicon.svg?v=2" rel="icon" type="image/svg+xml"/>
+  <link href="assets/img/favicon.svg?v=2" rel="apple-touch-icon"/>
   <script>(function(){try{var t=localStorage.getItem("dapdc_theme");if(t!=="light"&&t!=="dark"){t=(window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light";}document.documentElement.setAttribute("data-theme",t);document.documentElement.setAttribute("lang","en");document.documentElement.setAttribute("dir","ltr");}catch(e){}})();</script>
   <style>
-    :root{--auth-bg:#f4f7f7;--auth-card:#ffffff;--auth-ink:#011f23;--auth-mut:#5d6c7b;--auth-line:#dbe6e6;--auth-accent:#1c91a1;}
-    :root[data-theme="dark"]{--auth-bg:#0e1a18;--auth-card:#132420;--auth-ink:#eef4f4;--auth-mut:#9db0b0;--auth-line:rgba(255,255,255,.14);--auth-accent:#34b8c6;}
+    :root{--auth-bg:#F6F6F6;--auth-card:#ffffff;--auth-ink:#091F5B;--auth-mut:#5d6c7b;--auth-line:#d3e0f2;--auth-accent:#31538F;}
+    :root[data-theme="dark"]{--auth-bg:#081231;--auth-card:#0d1c45;--auth-ink:#eaf1fb;--auth-mut:#9caed0;--auth-line:rgba(255,255,255,.14);--auth-accent:#6F96D1;}
     body{margin:0;min-height:100vh;display:flex;flex-direction:column;background:var(--auth-bg);color:var(--auth-ink);font-family:Sora,-apple-system,"Segoe UI",Arial,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
     .auth-top *,.auth-wrap *,body{letter-spacing:normal;}
     .auth-card h1{letter-spacing:-.3px;}
+    /* neutralise lumora.css bare "img{width:100%;object-fit:cover;aspect-ratio:1}" */
+    .auth-top img,.auth-card>img{width:auto!important;height:auto!important;max-width:100%;object-fit:contain!important;aspect-ratio:auto!important;display:inline-block;}
+    .auth-top img{height:30px!important;}
+    .auth-card>img{width:42px!important;height:42px!important;}
     .auth-top{display:flex;align-items:center;justify-content:space-between;padding:18px 24px;max-width:1100px;margin:0 auto;width:100%;box-sizing:border-box;}
     .auth-top a{display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:var(--auth-mut);font-size:14px;}
     .auth-wrap{flex:1;display:flex;align-items:center;justify-content:center;padding:24px 20px 64px;}
@@ -28,6 +32,7 @@
     .fld{margin-bottom:14px;}
     .fld label{display:block;font-size:13px;font-weight:600;margin-bottom:6px;}
     .fld input{width:100%;box-sizing:border-box;padding:12px 14px;font:inherit;font-size:15px;color:inherit;background:transparent;border:1px solid var(--auth-line);border-radius:10px;outline:none;}
+    input[type=checkbox]{accent-color:var(--auth-accent);}
     .fld input:focus{border-color:var(--auth-accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--auth-accent) 22%,transparent);}
     .fld .fld-err{display:none;color:#e5484d;font-size:12.5px;margin-top:5px;}
     .fld.invalid .fld-err{display:block;}
@@ -35,8 +40,8 @@
     .row-between{display:flex;justify-content:space-between;align-items:center;margin:2px 0 18px;font-size:13px;}
     .row-between a,.link-btn{color:var(--auth-accent);text-decoration:none;background:none;border:0;padding:0;font:inherit;cursor:pointer;}
     .btn{width:100%;padding:13px 18px;font:inherit;font-weight:600;font-size:15px;border-radius:999px;border:0;cursor:pointer;}
-    .btn-primary{background:#011f23;color:#fff;}
-    :root[data-theme="dark"] .btn-primary{background:#1f2f2c;color:#eef4f4;border:1px solid var(--auth-line);}
+    .btn-primary{background:#091F5B;color:#fff;}
+    :root[data-theme="dark"] .btn-primary{background:#17285e;color:#eaf1fb;border:1px solid var(--auth-line);}
     .btn-google{margin-top:10px;background:transparent;border:1px solid var(--auth-line);color:inherit;display:flex;align-items:center;justify-content:center;gap:10px;}
     .msg{display:none;margin:0 0 16px;padding:11px 14px;border-radius:10px;font-size:13.5px;line-height:1.4;}
     .msg.err{display:block;background:rgba(229,72,77,.12);color:#e5484d;border:1px solid rgba(229,72,77,.3);}
@@ -51,12 +56,12 @@
 <body>
   <div class="auth-top">
     <a href="index.html">&larr; Back to website</a>
-    <img src="assets/img/lumora-logo.svg" alt="Dr. Asim Prakash Dental Clinic" height="30" style="height:30px;width:auto"/>
+    <img src="assets/img/lumora-logo.svg?v=2" alt="Dr. Asim Prakash Dental Clinic" height="30" style="height:30px;width:auto"/>
   </div>
 
   <div class="auth-wrap">
     <form class="auth-card" id="loginForm" novalidate>
-      <img src="assets/img/favicon.svg" alt="" width="40" height="40" style="border-radius:10px"/>
+      <img src="assets/img/favicon.svg?v=2" alt="" width="40" height="40" style="border-radius:10px"/>
       <h1>Patient Login</h1>
       <p class="sub">Sign in to see your appointments, treatment plan and reports.</p>
 
