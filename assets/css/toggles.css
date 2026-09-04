@@ -45,34 +45,34 @@
 :root[data-theme="dark"]{
   color-scheme:dark;
 
-  /* ink scale -> light blue-white (text on every section) */
-  --primitive-color--neutral-0:#eaf1fb;
-  --primitive-color--neutral-100:#eaf1fb;
-  --primitive-color--primary-900:#eaf1fb;
-  --primitive-color--primary-800:#e2ebf8;
-  --primitive-color--primary-700:#cdddf3;
-  --primitive-color--primary-600:#8fb3e0;   /* brand blue, lightened */
-  --primitive-color--primary-500:#6F96D1;   /* brand blue */
-  --primitive-color--primary-400:#9db9e2;
-  --primitive-color--black:#eaf1fb;
+  /* ink scale -> soft white (text on every section) */
+  --primitive-color--neutral-0:#e9eef7;
+  --primitive-color--neutral-100:#e9eef7;
+  --primitive-color--primary-900:#e9eef7;
+  --primitive-color--primary-800:#dde4f1;
+  --primitive-color--primary-700:#c7d3ea;
+  --primitive-color--primary-600:#93b0e4;   /* highlighted words */
+  --primitive-color--primary-500:#7ea6e0;   /* brand accent */
+  --primitive-color--primary-400:#9aabca;
+  --primitive-color--black:#e9eef7;
 
-  /* paper scale -> deep navy (backgrounds / hairlines) */
-  --primitive-color--neutral-50:#0c1836;
-  --primitive-color--neutral-200:#122150;
-  --primitive-color--neutral-300:#122150;
-  --primitive-color--neutral-400:#2c3f6e;
-  --primitive-color--gray-400:#0d1a3d;
+  /* paper scale -> dark slate (backgrounds / hairlines) */
+  --primitive-color--neutral-50:#0d1320;
+  --primitive-color--neutral-200:#141c2c;
+  --primitive-color--neutral-300:#141c2c;
+  --primitive-color--neutral-400:#2a3550;
+  --primitive-color--gray-400:#0e1420;
 
-  /* muted greys -> light blue-grey */
-  --primitive-color--gray-500:#a9b9d6;
-  --primitive-color--gray-600:#a2b3d2;
-  --primitive-color--gray-700:#9caed0;
-  --primitive-color--gray-800:#98abce;
+  /* muted greys -> cool grey */
+  --primitive-color--gray-500:#93a0ba;
+  --primitive-color--gray-600:#8b98b2;
+  --primitive-color--gray-700:#8a97b0;
+  --primitive-color--gray-800:#818fab;
 
-  --dapdc-bg:#081231;        /* page */
-  --dapdc-panel:#0d1c45;     /* dark section */
-  --dapdc-card:#122150;      /* raised card  */
-  --dapdc-line:rgba(255,255,255,.14);
+  --dapdc-bg:#0a0e17;        /* page              */
+  --dapdc-panel:#111725;     /* dark section      */
+  --dapdc-card:#171f30;      /* raised card       */
+  --dapdc-line:rgba(255,255,255,.09);
 }
 
 :root[data-theme="dark"] body{background-color:var(--dapdc-bg);}
@@ -120,7 +120,7 @@
 /* translucent-white chips inside service cards */
 :root[data-theme="dark"] .service-item_tag{
   background-color:rgba(255,255,255,.10) !important;
-  color:#eaf1fb !important;
+  color:#e9eef7 !important;
 }
 
 /* "why choose us" accordion uses a hard-coded near-black text colour */
@@ -129,7 +129,7 @@
 :root[data-theme="dark"] .tabs-accordion_header-title,
 :root[data-theme="dark"] .tabs-accordion_info-inner,
 :root[data-theme="dark"] .tabs-accordion_info-inner *{
-  color:#eaf1fb !important;
+  color:#e9eef7 !important;
 }
 
 /* nav + menus */
@@ -138,36 +138,36 @@
 :root[data-theme="dark"] .navbar-dropdown_link,
 :root[data-theme="dark"] .navbar-dropdown_link div,
 :root[data-theme="dark"] .navbar-dropdown_toggle,
-:root[data-theme="dark"] .navbar-dropdown_toggle div{color:#eaf1fb !important;}
+:root[data-theme="dark"] .navbar-dropdown_toggle div{color:#e9eef7 !important;}
 :root[data-theme="dark"] .navbar_menu,
 :root[data-theme="dark"] .navbar-dropdown_list,
 :root[data-theme="dark"] .navbar-dropdown_list.w--open{background-color:var(--dapdc-bg) !important;}
 :root[data-theme="dark"] .navbar_toggler-bar-bottom,
 :root[data-theme="dark"] .navbar-toggler_bar_top,
-:root[data-theme="dark"] .navbar-toggler_bar-middle{background-color:#eaf1fb !important;}
+:root[data-theme="dark"] .navbar-toggler_bar-middle{background-color:#e9eef7 !important;}
 
 /* form card + fields */
 :root[data-theme="dark"] .lead-form_card,
 :root[data-theme="dark"] [class*="form_card"]{
-  background-color:#0e1c45 !important;color:#eaf1fb;border-color:var(--dapdc-line);
+  background-color:#141c2c !important;color:#e9eef7;border-color:var(--dapdc-line);
 }
 :root[data-theme="dark"] input,
 :root[data-theme="dark"] textarea,
 :root[data-theme="dark"] select{
-  background-color:#0a1533 !important;color:#eaf1fb;border-color:var(--dapdc-line);
+  background-color:#0d1320 !important;color:#e9eef7;border-color:var(--dapdc-line);
 }
 :root[data-theme="dark"] input::placeholder,
-:root[data-theme="dark"] textarea::placeholder{color:#9caed0;}
+:root[data-theme="dark"] textarea::placeholder{color:#93a0ba;}
 
 /* primary buttons: dark pill + light label (avoids glaring white in dark mode) */
 :root[data-theme="dark"] .button_primary{
-  background-color:#17285e !important;
+  background-color:#1b2740 !important;
   border:1px solid var(--dapdc-line) !important;
 }
 :root[data-theme="dark"] .button_primary,
 :root[data-theme="dark"] .button_primary div,
-:root[data-theme="dark"] .button_primary path{color:#eaf1fb !important;stroke:#eaf1fb !important;}
-:root[data-theme="dark"] .button_primary:hover{background-color:#3B63A8 !important;}
+:root[data-theme="dark"] .button_primary path{color:#e9eef7 !important;stroke:#e9eef7 !important;}
+:root[data-theme="dark"] .button_primary:hover{background-color:#2f4d80 !important;}
 
 /* keep real photos looking natural, just take the edge off */
 :root[data-theme="dark"] img:not([src*="logo"]){filter:brightness(.92);}
@@ -211,3 +211,30 @@ img,svg,video,iframe{max-width:100%;}
   .navbar_menu .navbar_link div,
   .navbar_menu .navbar-dropdown_toggle > div{ white-space:nowrap; }
 }
+
+/* ---------- 5. Floating WhatsApp button ---------------------------- */
+.dapdc-wa{
+  position:fixed;
+  right:18px; bottom:18px;
+  z-index:2147483000;
+  width:56px; height:56px;
+  display:flex; align-items:center; justify-content:center;
+  background:#25D366;
+  border-radius:50%;
+  box-shadow:0 8px 24px -4px rgba(0,0,0,.35), 0 2px 8px rgba(0,0,0,.2);
+  text-decoration:none;
+  transition:transform .15s ease, box-shadow .15s ease;
+  animation:dapdc-wa-pulse 2.6s ease-out infinite;
+}
+.dapdc-wa:hover{ transform:scale(1.06); box-shadow:0 12px 30px -6px rgba(0,0,0,.4); }
+.dapdc-wa svg{ width:30px; height:30px; display:block; }
+@keyframes dapdc-wa-pulse{
+  0%   { box-shadow:0 8px 24px -4px rgba(0,0,0,.35), 0 0 0 0 rgba(37,211,102,.45); }
+  70%  { box-shadow:0 8px 24px -4px rgba(0,0,0,.35), 0 0 0 16px rgba(37,211,102,0); }
+  100% { box-shadow:0 8px 24px -4px rgba(0,0,0,.35), 0 0 0 0 rgba(37,211,102,0); }
+}
+@media (max-width:479px){
+  .dapdc-wa{ right:14px; bottom:14px; width:52px; height:52px; }
+  .dapdc-wa svg{ width:28px; height:28px; }
+}
+@media (prefers-reduced-motion:reduce){ .dapdc-wa{ animation:none; } }
