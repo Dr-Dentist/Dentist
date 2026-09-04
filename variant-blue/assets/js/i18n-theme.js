@@ -179,3 +179,30 @@
     });
   }
 })();
+
+/* ---------- mobile nav fix ------------------------------------------------
+ * The Webflow export leaves .navbar_menu translated off-screen even when the
+ * hamburger is "open". Mirror the button's open state onto <html> so the CSS
+ * in toggles.css (section 4) can pull the panel into view, and close the menu
+ * when a link inside it is tapped.                                          */
+(function () {
+  "use strict";
+  function init() {
+    var btn = document.querySelector(".w-nav-button");
+    var menu = document.querySelector(".navbar_menu.w-nav-menu");
+    if (!btn || !menu) return;
+    var root = document.documentElement;
+    var sync = function () {
+      root.classList.toggle("dapdc-nav-open", btn.classList.contains("w--open"));
+    };
+    btn.addEventListener("click", function () { setTimeout(sync, 0); setTimeout(sync, 60); });
+    new MutationObserver(sync).observe(btn, { attributes: true, attributeFilter: ["class"] });
+    menu.addEventListener("click", function (e) {
+      var a = e.target.closest("a");
+      if (a && btn.classList.contains("w--open")) { btn.click(); }
+    });
+    sync();
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
+  else init();
+})();

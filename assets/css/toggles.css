@@ -183,3 +183,31 @@
 /* the hero headline uses a per-character split animation that only makes
    sense for Latin text — show it plainly in Hindi                      */
 :root[lang="hi"] .hero-text-split{opacity:1 !important;transform:none !important;}
+
+/* ---------- 4. Overflow guard + mobile menu fix --------------------- */
+html,body{overflow-x:clip;}
+@supports not (overflow:clip){ html,body{overflow-x:hidden;} }
+img,svg,video,iframe{max-width:100%;}
+
+/* Webflow export leaves the mobile menu translated off-screen when opened.
+   .dapdc-nav-open is set on <html> by i18n-theme.js while the hamburger is open. */
+@media (max-width:991px){
+  .dapdc-nav-open .navbar_menu.w-nav-menu{
+    transform:none !important;
+    max-height:calc(100vh - 64px);
+    overflow-y:auto;
+    -webkit-overflow-scrolling:touch;
+    background:#ffffff;
+    padding:14px 22px 26px;
+    box-shadow:0 24px 48px -20px rgba(1,31,35,.35);
+  }
+  :root[data-theme="dark"] .dapdc-nav-open .navbar_menu.w-nav-menu{ background:#0e1a18; }
+  .dapdc-nav-open .navbar_link,
+  .dapdc-nav-open .navbar-dropdown_toggle{ padding:12px 0; }
+}
+
+/* keep the (now longer) primary nav on one line */
+@media (min-width:992px){
+  .navbar_menu .navbar_link div,
+  .navbar_menu .navbar-dropdown_toggle > div{ white-space:nowrap; }
+}

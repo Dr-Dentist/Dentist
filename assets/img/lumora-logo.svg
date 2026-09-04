@@ -1,13 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="240" height="34" viewBox="0 0 240 34" fill="none" role="img" aria-label="Dr. Asim Prakash Dental Clinic">
+<svg xmlns="http://www.w3.org/2000/svg" width="156" height="34" viewBox="0 0 156 34" fill="none" role="img" aria-label="Dr. Asim Prakash Dental Clinic">
   <defs>
-    <linearGradient id="lm-g" x1="0" y1="0" x2="34" y2="34" gradientUnits="userSpaceOnUse">
+    <linearGradient id="lm-g" x1="0" y1="0" x2="30" y2="30" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#24a3b1"/>
       <stop offset="1" stop-color="#022f34"/>
     </linearGradient>
   </defs>
-  <!-- mark: a glowing tooth/drop -->
-  <path d="M17 2.2c5.4 0 9.4 3.8 9.4 9.1 0 4.1-1.3 6.6-2.6 11.2-1 3.5-1.7 7.3-3.9 7.3-1.8 0-1.9-3.1-2.9-3.1s-1.1 3.1-2.9 3.1c-2.2 0-2.9-3.8-3.9-7.3C8.9 17.9 7.6 15.4 7.6 11.3 7.6 6 11.6 2.2 17 2.2Z" fill="url(#lm-g)"/>
-  <circle cx="22.4" cy="9.4" r="2.1" fill="#ffffff" opacity="0.85"/>
-  <text x="38" y="15" font-family="Sora, 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="700" letter-spacing="-0.2" fill="#011f23">Dr. Asim Prakash</text>
-  <text x="38" y="27" font-family="Sora, 'Helvetica Neue', Arial, sans-serif" font-size="8" font-weight="500" letter-spacing="1.5" fill="#24a3b1">DENTAL CLINIC &#183; ARARIA</text>
+  <path d="M15 2c4.8 0 8.3 3.4 8.3 8.1 0 3.6-1.1 5.8-2.3 9.9-.9 3.1-1.5 6.4-3.4 6.4-1.6 0-1.7-2.7-2.6-2.7s-1 2.7-2.6 2.7c-1.9 0-2.5-3.3-3.4-6.4C7.8 15.9 6.7 13.7 6.7 10.1 6.7 5.4 10.2 2 15 2Z" fill="url(#lm-g)"/>
+  <circle cx="19.8" cy="8.3" r="1.9" fill="#ffffff" opacity="0.85"/>
+  <text x="32" y="14" font-family="Sora, 'Helvetica Neue', Arial, sans-serif" font-size="11.5" font-weight="700" letter-spacing="-0.3" fill="#011f23">Dr. Asim Prakash</text>
+  <text x="32" y="25.5" font-family="Sora, 'Helvetica Neue', Arial, sans-serif" font-size="6.3" font-weight="600" letter-spacing="2" fill="#24a3b1">DENTAL CLINIC</text>
 </svg>
