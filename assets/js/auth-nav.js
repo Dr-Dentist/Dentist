@@ -3,7 +3,7 @@
 (function () {
   function apply(session) {
     if (!session) return;
-    var link = document.querySelector('a.navbar_link[href="login.html"]');
+    var link = document.querySelector('a.navbar_link[href="/login/"]');
     if (!link) return;
     var label = link.querySelector("div");
     if (label) label.textContent = "My Account";

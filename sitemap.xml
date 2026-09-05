@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://REPLACE-WITH-YOUR-DOMAIN/</loc><priority>1.0</priority></url>
-  <url><loc>https://REPLACE-WITH-YOUR-DOMAIN/about.html</loc><priority>0.8</priority></url>
-  <url><loc>https://REPLACE-WITH-YOUR-DOMAIN/service.html</loc><priority>0.9</priority></url>
-  <url><loc>https://REPLACE-WITH-YOUR-DOMAIN/blog.html</loc><priority>0.6</priority></url>
+  <url><loc>https://asimprakash.com/</loc><priority>1.0</priority></url>
+  <url><loc>https://asimprakash.com/about/</loc><priority>0.8</priority></url>
+  <url><loc>https://asimprakash.com/service/</loc><priority>0.9</priority></url>
+  <url><loc>https://asimprakash.com/blog/</loc><priority>0.6</priority></url>
+  <url><loc>https://asimprakash.com/blog-brushing/</loc><priority>0.5</priority></url>
+  <url><loc>https://asimprakash.com/blog-flossing/</loc><priority>0.5</priority></url>
+  <url><loc>https://asimprakash.com/blog-dental-myths/</loc><priority>0.5</priority></url>
+  <url><loc>https://asimprakash.com/blog-foods/</loc><priority>0.5</priority></url>
+  <url><loc>https://asimprakash.com/blog-veneers/</loc><priority>0.5</priority></url>
+  <url><loc>https://asimprakash.com/blog-daily-habits/</loc><priority>0.5</priority></url>
+  <url><loc>https://asimprakash.com/video-consultation/</loc><priority>0.6</priority></url>
 </urlset>

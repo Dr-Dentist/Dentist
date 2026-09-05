@@ -201,7 +201,10 @@
     // marker is unreliable across this export) so the menu active-state shows
     function markCurrent() {
       var norm = function (p) {
-        var f = (p || "").split("?")[0].split("#")[0].split("/").pop().toLowerCase().replace(/\.html?$/, "");
+        // clean URLs (/about/) end in a trailing slash, so drop empty segments
+        // before taking the last one, or "/about/" would wrongly normalise to "".
+        var parts = (p || "").split("?")[0].split("#")[0].split("/").filter(Boolean);
+        var f = (parts.pop() || "").toLowerCase().replace(/\.html?$/, "");
         return f || "index";
       };
       var here = norm(location.pathname);
