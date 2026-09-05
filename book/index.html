@@ -38,9 +38,6 @@
     .choice .ic svg{width:22px;height:22px;}
     .choice-title{font-weight:700;font-size:15.5px;}
     .choice-sub{font-size:12.5px;color:var(--auth-mut);line-height:1.45;}
-    .choice[disabled]{opacity:.55;cursor:not-allowed;}
-    .choice[disabled]:hover{border-color:var(--auth-line);transform:none;box-shadow:none;}
-    .choice-soon{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--auth-mut);}
 
     .backlink{background:none;border:0;color:var(--auth-accent);font:inherit;font-size:13px;cursor:pointer;padding:0;margin-bottom:14px;}
     #cal-inline{min-height:640px;width:100%;overflow:hidden;border-radius:12px;}
@@ -73,13 +70,11 @@
           <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 21v-6h6v6"/><path d="M10 9h4M10 12h4"/></svg></span>
           <span class="choice-title">Book at the clinic</span>
           <span class="choice-sub">In-person visit at Azad Academy Chowk, Hospital Road, Araria.</span>
-          <span class="choice-soon" hidden>Coming soon</span>
         </button>
         <button type="button" class="choice" data-type="video">
           <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="m16 10 6-3v10l-6-3"/></svg></span>
           <span class="choice-title">Via video call</span>
           <span class="choice-sub">Consult the dentist online from home over a video link.</span>
-          <span class="choice-soon" hidden>Coming soon</span>
         </button>
       </div>
     </div>
@@ -90,10 +85,11 @@
       <div id="cal-inline"><div id="cal-loading">Loading the calendar…</div></div>
     </div>
 
-    <!-- No links configured at all -->
+    <!-- Per-option fallback (shown when that type has no Cal.com link yet) -->
     <div class="card fallback" id="cal-fallback" hidden>
-      <p>Online booking is being set up. For now, please book directly with the clinic:</p>
-      <a class="btn btn-primary" href="https://wa.me/917764014465?text=Hi%2C%20I%27d%20like%20to%20book%20an%20appointment%20with%20Dr.%20Asim%20Prakash%20Dental%20Clinic." target="_blank" rel="noopener">Book on WhatsApp</a>
+      <button type="button" class="backlink" id="fbBackBtn">&larr; Choose a different type</button>
+      <p id="fbText">Online booking for this option is being set up. For now, please book directly with the clinic:</p>
+      <a class="btn btn-primary" id="fbWa" href="#" target="_blank" rel="noopener">Book on WhatsApp</a>
       <a class="btn btn-ghost" href="tel:+917764014465">Call +91 77640 14465</a>
     </div>
 
@@ -114,31 +110,39 @@
     var prefill  = null;        // {name,email} once we know the visitor
     var calBooted = false;      // Cal.com embed script initialised once
 
-    // Nothing configured at all -> straight to WhatsApp/phone fallback.
-    if (!LINKS.clinic && !LINKS.video) {
-      chooser.hidden = true;
-      fallback.hidden = false;
-      return;
-    }
+    var WA = {
+      clinic: "https://wa.me/917764014465?text=" + encodeURIComponent("Hi, I'd like to book an appointment at the clinic with Dr. Asim Prakash Dental Clinic."),
+      video:  "https://wa.me/917764014465?text=" + encodeURIComponent("Hi, I'd like to book a video-call consultation with Dr. Asim Prakash Dental Clinic.")
+    };
 
-    // Mark any not-yet-configured option as "coming soon".
+    // The two options are always shown. Each opens its Cal.com calendar if a
+    // link is set, otherwise a WhatsApp/phone fallback for that option.
     document.querySelectorAll(".choice").forEach(function (btn) {
       var type = btn.getAttribute("data-type");
-      if (!LINKS[type]) {
-        btn.disabled = true;
-        btn.querySelector(".choice-soon").hidden = false;
-      }
       btn.addEventListener("click", function () {
-        if (!LINKS[type]) return;
-        openCalendar(LINKS[type]);
+        if (LINKS[type]) openCalendar(LINKS[type]);
+        else showFallback(type);
       });
     });
 
-    document.getElementById("backBtn").addEventListener("click", function () {
+    function backToChooser() {
       calStep.hidden = true;
+      fallback.hidden = true;
       chooser.hidden = false;
       calEl.innerHTML = "";
-    });
+    }
+    document.getElementById("backBtn").addEventListener("click", backToChooser);
+    document.getElementById("fbBackBtn").addEventListener("click", backToChooser);
+
+    function showFallback(type) {
+      chooser.hidden = true;
+      calStep.hidden = true;
+      document.getElementById("fbText").textContent = (type === "video"
+        ? "Video-call booking is being set up. For now, please arrange your video consultation directly with the clinic:"
+        : "Online booking is being set up. For now, please book your clinic visit directly:");
+      document.getElementById("fbWa").href = WA[type] || WA.clinic;
+      fallback.hidden = false;
+    }
 
     function bootCal() {
       if (calBooted) return;
