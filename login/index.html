@@ -30,6 +30,9 @@
     .auth-card{width:100%;max-width:400px;background:var(--auth-card);border:1px solid var(--auth-line);border-radius:20px;padding:32px 28px;box-shadow:0 24px 60px -30px rgba(1,31,35,.25);}
     .auth-card h1{font-size:22px;margin:14px 0 4px;letter-spacing:-.3px;}
     .auth-card .sub{color:var(--auth-mut);font-size:14px;margin:0 0 22px;}
+    .auth-tabs{display:flex;gap:4px;background:var(--auth-bg);border:1px solid var(--auth-line);border-radius:999px;padding:4px;margin-bottom:20px;}
+    .auth-tabs button{flex:1;border:0;background:transparent;border-radius:999px;padding:9px 10px;font:inherit;font-size:13.5px;font-weight:600;color:var(--auth-mut);cursor:pointer;}
+    .auth-tabs button.active{background:var(--auth-card);color:var(--auth-ink);box-shadow:0 2px 8px rgba(1,31,35,.12);}
     .fld{margin-bottom:14px;}
     .fld label{display:block;font-size:13px;font-weight:600;margin-bottom:6px;}
     .fld input{width:100%;box-sizing:border-box;padding:12px 14px;font:inherit;font-size:15px;color:inherit;background:transparent;border:1px solid var(--auth-line);border-radius:10px;outline:none;}
@@ -52,6 +55,8 @@
     .auth-foot a{color:var(--auth-accent);text-decoration:none;}
     .divider{display:flex;align-items:center;gap:12px;color:var(--auth-mut);font-size:12px;margin:18px 0;}
     .divider::before,.divider::after{content:"";flex:1;height:1px;background:var(--auth-line);}
+    .auth-panel{display:none;}
+    .auth-panel.active{display:block;}
   </style>
 </head>
 <body>
@@ -61,33 +66,70 @@
   </div>
 
   <div class="auth-wrap">
-    <form class="auth-card" id="loginForm" novalidate>
+    <div class="auth-card">
       <img src="/assets/img/favicon.svg?v=2" alt="" width="40" height="40" style="border-radius:10px"/>
-      <h1>Patient Login</h1>
-      <p class="sub">Sign in to see your appointments, treatment plan and reports.</p>
+      <h1 id="authTitle">Patient Login</h1>
+      <p class="sub" id="authSub">Sign in to see your appointments, treatment plan and reports.</p>
 
-      <div class="msg" id="loginMsg" role="alert"></div>
-
-      <div class="fld" id="fld-email">
-        <label for="email">Email address</label>
-        <input type="email" id="email" name="email" autocomplete="email" placeholder="you@example.com"/>
-        <div class="fld-err">Enter a valid email address.</div>
+      <div class="auth-tabs">
+        <button type="button" class="active" id="tabSignin">Sign in</button>
+        <button type="button" id="tabSignup">Create account</button>
       </div>
 
-      <div class="fld" id="fld-pass">
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" autocomplete="current-password" placeholder="Your password"/>
-        <div class="fld-err">Password must be at least 6 characters.</div>
-      </div>
+      <div class="msg" id="authMsg" role="alert"></div>
 
-      <div class="row-between">
-        <label style="display:flex;gap:6px;align-items:center;font-weight:400;color:var(--auth-mut)">
-          <input type="checkbox" id="remember" checked style="width:auto"/> Remember me
-        </label>
-        <button type="button" class="link-btn" id="forgotLink">Forgot password?</button>
-      </div>
+      <!-- ============ SIGN IN ============ -->
+      <form class="auth-panel active" id="loginForm" novalidate>
+        <div class="fld" id="li-fld-email">
+          <label for="li-email">Email address</label>
+          <input type="email" id="li-email" name="email" autocomplete="email" placeholder="you@example.com"/>
+          <div class="fld-err">Enter a valid email address.</div>
+        </div>
 
-      <button type="submit" class="btn btn-primary" id="loginBtn">Sign in</button>
+        <div class="fld" id="li-fld-pass">
+          <label for="li-password">Password</label>
+          <input type="password" id="li-password" name="password" autocomplete="current-password" placeholder="Your password"/>
+          <div class="fld-err">Password must be at least 6 characters.</div>
+        </div>
+
+        <div class="row-between">
+          <label style="display:flex;gap:6px;align-items:center;font-weight:400;color:var(--auth-mut)">
+            <input type="checkbox" id="remember" checked style="width:auto"/> Remember me
+          </label>
+          <button type="button" class="link-btn" id="forgotLink">Forgot password?</button>
+        </div>
+
+        <button type="submit" class="btn btn-primary" id="loginBtn">Sign in</button>
+      </form>
+
+      <!-- ============ CREATE ACCOUNT ============ -->
+      <form class="auth-panel" id="signupForm" novalidate>
+        <div class="fld" id="su-fld-name">
+          <label for="su-name">Full name</label>
+          <input type="text" id="su-name" name="name" autocomplete="name" placeholder="Your full name"/>
+          <div class="fld-err">Enter your name.</div>
+        </div>
+
+        <div class="fld" id="su-fld-phone">
+          <label for="su-phone">Phone number</label>
+          <input type="tel" id="su-phone" name="phone" autocomplete="tel" placeholder="10-digit mobile number"/>
+          <div class="fld-err">Enter a valid 10-digit phone number.</div>
+        </div>
+
+        <div class="fld" id="su-fld-email">
+          <label for="su-email">Email address</label>
+          <input type="email" id="su-email" name="email" autocomplete="email" placeholder="you@example.com"/>
+          <div class="fld-err">Enter a valid email address.</div>
+        </div>
+
+        <div class="fld" id="su-fld-pass">
+          <label for="su-password">Password</label>
+          <input type="password" id="su-password" name="password" autocomplete="new-password" placeholder="At least 6 characters"/>
+          <div class="fld-err">Password must be at least 6 characters.</div>
+        </div>
+
+        <button type="submit" class="btn btn-primary" id="signupBtn">Create account</button>
+      </form>
 
       <div class="divider">or</div>
       <button type="button" class="btn btn-google" id="googleBtn">
@@ -95,11 +137,11 @@
         Continue with Google
       </button>
 
-      <p class="auth-foot">Not a registered patient yet?<br/>
+      <p class="auth-foot">Prefer to just call?<br/>
         <a href="tel:+917764014465">Call +91 77640&nbsp;14465</a> or
         <a href="https://wa.me/917764014465?text=Hi%2C%20I%27d%20like%20to%20register%20as%20a%20patient." target="_blank" rel="noopener">message us on WhatsApp</a>.
       </p>
-    </form>
+    </div>
   </div>
 
   <!-- ============================================================
@@ -109,25 +151,39 @@
   <script src="/assets/js/supabase-load.js?v=1"></script>
   <script>
   (function () {
-    var form = document.getElementById("loginForm");
-    var msg  = document.getElementById("loginMsg");
-    var btn  = document.getElementById("loginBtn");
+    var loginForm  = document.getElementById("loginForm");
+    var signupForm = document.getElementById("signupForm");
+    var tabSignin  = document.getElementById("tabSignin");
+    var tabSignup  = document.getElementById("tabSignup");
+    var authTitle  = document.getElementById("authTitle");
+    var authSub    = document.getElementById("authSub");
+    var msg        = document.getElementById("authMsg");
+    var loginBtn   = document.getElementById("loginBtn");
+    var signupBtn  = document.getElementById("signupBtn");
     var loadSupabase = loadSupabaseClient;
 
     function showMsg(kind, text) { msg.className = "msg " + kind; msg.textContent = text; }
     function clearMsg() { msg.className = "msg"; msg.textContent = ""; }
     function setInvalid(id, bad) { document.getElementById(id).classList.toggle("invalid", !!bad); }
+    var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    function validate() {
-      var email = document.getElementById("email").value.trim();
-      var pass  = document.getElementById("password").value;
-      var okEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-      var okPass  = pass.length >= 6;
-      setInvalid("fld-email", !okEmail);
-      setInvalid("fld-pass", !okPass);
-      return okEmail && okPass ? { email: email, pass: pass } : null;
+    function showTab(which) {
+      clearMsg();
+      var signin = which === "signin";
+      tabSignin.classList.toggle("active", signin);
+      tabSignup.classList.toggle("active", !signin);
+      loginForm.classList.toggle("active", signin);
+      signupForm.classList.toggle("active", !signin);
+      authTitle.textContent = signin ? "Patient Login" : "Create Your Account";
+      authSub.textContent = signin
+        ? "Sign in to see your appointments, treatment plan and reports."
+        : "Register once, then book and manage your visits online.";
     }
-    ["email", "password"].forEach(function (id) {
+    tabSignin.addEventListener("click", function () { showTab("signin"); });
+    tabSignup.addEventListener("click", function () { showTab("signup"); });
+
+    // ---------- Sign in ----------
+    ["li-email", "li-password"].forEach(function (id) {
       document.getElementById(id).addEventListener("input", function () {
         this.closest(".fld").classList.remove("invalid"); clearMsg();
       });
@@ -141,43 +197,40 @@
       });
     });
 
-    form.addEventListener("submit", function (e) {
+    loginForm.addEventListener("submit", function (e) {
       e.preventDefault();
       clearMsg();
-      var v = validate();
-      if (!v) { showMsg("err", "Please fix the highlighted fields and try again."); return; }
+      var email = document.getElementById("li-email").value.trim();
+      var pass  = document.getElementById("li-password").value;
+      var okEmail = EMAIL_RE.test(email);
+      var okPass  = pass.length >= 6;
+      setInvalid("li-fld-email", !okEmail);
+      setInvalid("li-fld-pass", !okPass);
+      if (!okEmail || !okPass) { showMsg("err", "Please fix the highlighted fields and try again."); return; }
 
-      btn.disabled = true; btn.textContent = "Signing in…";
+      loginBtn.disabled = true; loginBtn.textContent = "Signing in…";
       loadSupabase(function (client) {
         if (!client) {
-          btn.disabled = false; btn.textContent = "Sign in";
+          loginBtn.disabled = false; loginBtn.textContent = "Sign in";
           showMsg("info", "Login is not connected yet. The clinic is setting this up — for now please call or WhatsApp +91 77640 14465.");
           return;
         }
-        client.auth.signInWithPassword({ email: v.email, password: v.pass }).then(function (res) {
-          btn.disabled = false; btn.textContent = "Sign in";
+        client.auth.signInWithPassword({ email: email, password: pass }).then(function (res) {
+          loginBtn.disabled = false; loginBtn.textContent = "Sign in";
           if (res.error) { showMsg("err", res.error.message || "That email and password did not match."); return; }
           showMsg("ok", "Signed in. Redirecting…");
           setTimeout(function () { window.location.href = "/account/"; }, 900);
         }).catch(function () {
-          btn.disabled = false; btn.textContent = "Sign in";
+          loginBtn.disabled = false; loginBtn.textContent = "Sign in";
           showMsg("err", "Something went wrong. Please try again in a moment.");
         });
       });
     });
 
-    document.getElementById("googleBtn").addEventListener("click", function () {
-      clearMsg();
-      loadSupabase(function (client) {
-        if (!client) { showMsg("info", "Google sign-in is not connected yet. Please call or WhatsApp +91 77640 14465."); return; }
-        client.auth.signInWithOAuth({ provider: "google", options: { redirectTo: window.location.origin + "/account/" } });
-      });
-    });
-
     document.getElementById("forgotLink").addEventListener("click", function () {
-      var email = document.getElementById("email").value.trim();
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        setInvalid("fld-email", true);
+      var email = document.getElementById("li-email").value.trim();
+      if (!EMAIL_RE.test(email)) {
+        setInvalid("li-fld-email", true);
         showMsg("err", "Enter your email address above first, then click “Forgot password?”.");
         return;
       }
@@ -186,6 +239,75 @@
         client.auth.resetPasswordForEmail(email).then(function () {
           showMsg("ok", "If that email is registered, a reset link is on its way.");
         });
+      });
+    });
+
+    // ---------- Create account ----------
+    ["su-name", "su-phone", "su-email", "su-password"].forEach(function (id) {
+      document.getElementById(id).addEventListener("input", function () {
+        this.closest(".fld").classList.remove("invalid"); clearMsg();
+      });
+    });
+
+    signupForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      clearMsg();
+      var name  = document.getElementById("su-name").value.trim();
+      var phone = document.getElementById("su-phone").value.trim();
+      var email = document.getElementById("su-email").value.trim();
+      var pass  = document.getElementById("su-password").value;
+      var okName  = name.length >= 2;
+      var okPhone = /^[0-9+\-\s()]{7,15}$/.test(phone);
+      var okEmail = EMAIL_RE.test(email);
+      var okPass  = pass.length >= 6;
+      setInvalid("su-fld-name", !okName);
+      setInvalid("su-fld-phone", !okPhone);
+      setInvalid("su-fld-email", !okEmail);
+      setInvalid("su-fld-pass", !okPass);
+      if (!okName || !okPhone || !okEmail || !okPass) { showMsg("err", "Please fix the highlighted fields and try again."); return; }
+
+      signupBtn.disabled = true; signupBtn.textContent = "Creating account…";
+      loadSupabase(function (client) {
+        if (!client) {
+          signupBtn.disabled = false; signupBtn.textContent = "Create account";
+          showMsg("info", "Sign-up is not connected yet. Please call or WhatsApp +91 77640 14465.");
+          return;
+        }
+        client.auth.signUp({
+          email: email,
+          password: pass,
+          options: { data: { full_name: name, phone: phone } }
+        }).then(function (res) {
+          signupBtn.disabled = false; signupBtn.textContent = "Create account";
+          if (res.error) { showMsg("err", res.error.message || "Could not create your account."); return; }
+
+          // Save the profile row right away if we already have a session
+          // (i.e. email confirmation is OFF in Supabase). If confirmation
+          // is required, account.html creates this row on first sign-in instead.
+          var session = res.data && res.data.session;
+          var user = res.data && res.data.user;
+          if (session && user) {
+            client.from("profiles").upsert({ id: user.id, full_name: name, phone: phone }).then(function () {
+              showMsg("ok", "Account created. Redirecting…");
+              setTimeout(function () { window.location.href = "/account/"; }, 900);
+            });
+          } else {
+            showMsg("ok", "Account created! Check your email to confirm it, then sign in.");
+            showTab("signin");
+          }
+        }).catch(function () {
+          signupBtn.disabled = false; signupBtn.textContent = "Create account";
+          showMsg("err", "Something went wrong. Please try again in a moment.");
+        });
+      });
+    });
+
+    // ---------- Google ----------
+    document.getElementById("googleBtn").addEventListener("click", function () {
+      clearMsg();
+      loadSupabase(function (client) {
+        if (!client) { showMsg("info", "Google sign-in is not connected yet. Please call or WhatsApp +91 77640 14465."); return; }
+        client.auth.signInWithOAuth({ provider: "google", options: { redirectTo: window.location.origin + "/account/" } });
       });
     });
   })();
