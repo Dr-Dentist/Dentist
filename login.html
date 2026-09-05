@@ -103,19 +103,16 @@
   </div>
 
   <!-- ============================================================
-       SUPABASE AUTH  —  set the two values below to go live.
-       Project → Settings → API → Project URL + anon public key.
+       SUPABASE AUTH  —  credentials live in assets/js/supabase-config.js
        ============================================================ -->
-  <script>
-    var SUPABASE_URL = "https://fzuxpkstcnrlnmtkjihi.supabase.co";
-    var SUPABASE_ANON_KEY = "sb_publishable_X8-Iz2pPh0-NMUNQTccD3w_EMwNq5i9";
-  </script>
+  <script src="assets/js/supabase-config.js?v=1"></script>
+  <script src="assets/js/supabase-load.js?v=1"></script>
   <script>
   (function () {
     var form = document.getElementById("loginForm");
     var msg  = document.getElementById("loginMsg");
     var btn  = document.getElementById("loginBtn");
-    var sb   = null;
+    var loadSupabase = loadSupabaseClient;
 
     function showMsg(kind, text) { msg.className = "msg " + kind; msg.textContent = text; }
     function clearMsg() { msg.className = "msg"; msg.textContent = ""; }
@@ -136,18 +133,13 @@
       });
     });
 
-    function loadSupabase(cb) {
-      if (sb) return cb(sb);
-      if (!SUPABASE_URL || !SUPABASE_ANON_KEY) return cb(null);
-      var s = document.createElement("script");
-      s.src = "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2";
-      s.onload = function () {
-        try { sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY); } catch (e) { sb = null; }
-        cb(sb);
-      };
-      s.onerror = function () { cb(null); };
-      document.head.appendChild(s);
-    }
+    // Already signed in (e.g. came back to this page)? Skip straight to the account page.
+    loadSupabase(function (client) {
+      if (!client) return;
+      client.auth.getSession().then(function (res) {
+        if (res.data && res.data.session) window.location.href = "account.html";
+      });
+    });
 
     form.addEventListener("submit", function (e) {
       e.preventDefault();
@@ -166,7 +158,7 @@
           btn.disabled = false; btn.textContent = "Sign in";
           if (res.error) { showMsg("err", res.error.message || "That email and password did not match."); return; }
           showMsg("ok", "Signed in. Redirecting…");
-          setTimeout(function () { window.location.href = "index.html"; }, 900);
+          setTimeout(function () { window.location.href = "account.html"; }, 900);
         }).catch(function () {
           btn.disabled = false; btn.textContent = "Sign in";
           showMsg("err", "Something went wrong. Please try again in a moment.");
@@ -178,7 +170,7 @@
       clearMsg();
       loadSupabase(function (client) {
         if (!client) { showMsg("info", "Google sign-in is not connected yet. Please call or WhatsApp +91 77640 14465."); return; }
-        client.auth.signInWithOAuth({ provider: "google", options: { redirectTo: window.location.origin + "/index.html" } });
+        client.auth.signInWithOAuth({ provider: "google", options: { redirectTo: window.location.origin + "/account.html" } });
       });
     });
 
