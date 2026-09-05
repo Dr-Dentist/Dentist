@@ -29,7 +29,7 @@
   function detectTheme() {
     var stored = get(LS_THEME);
     if (stored === "light" || stored === "dark") return stored;
-    return (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) ? "dark" : "light";
+    return "light"; // default to light regardless of device/OS preference until the user picks
   }
 
   var lang = detectLang();
@@ -172,12 +172,8 @@
     window.addEventListener("load", function () { setTimeout(reassert, 400); setTimeout(reassert, 1200); });
   }
 
-  // follow OS theme changes only while user hasn't chosen explicitly
-  if (window.matchMedia) {
-    window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", function (e) {
-      if (!get(LS_THEME)) applyTheme(e.matches ? "dark" : "light");
-    });
-  }
+  // Theme now defaults to light and only ever changes via the toggle button
+  // (detectTheme() above) — no longer follows OS/device dark-mode changes.
 })();
 
 /* ---------- mobile nav fix ------------------------------------------------

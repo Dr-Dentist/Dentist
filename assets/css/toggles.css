@@ -139,9 +139,13 @@
 :root[data-theme="dark"] .navbar-dropdown_link div,
 :root[data-theme="dark"] .navbar-dropdown_toggle,
 :root[data-theme="dark"] .navbar-dropdown_toggle div{color:#e9eef7 !important;}
-:root[data-theme="dark"] .navbar_menu,
 :root[data-theme="dark"] .navbar-dropdown_list,
 :root[data-theme="dark"] .navbar-dropdown_list.w--open{background-color:var(--dapdc-bg) !important;}
+/* NOTE: .navbar_menu is intentionally excluded above — it's also the
+   desktop inline nav-links row, and painting it opaque here covered the
+   liquid-glass header (section 7) with a solid black box on desktop.
+   The mobile dropdown panel already gets its own dark background from
+   the more specific @media (max-width:991px) rules further down. */
 :root[data-theme="dark"] .navbar_toggler-bar-bottom,
 :root[data-theme="dark"] .navbar-toggler_bar_top,
 :root[data-theme="dark"] .navbar-toggler_bar-middle{background-color:#e9eef7 !important;}
